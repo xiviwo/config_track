@@ -1,0 +1,4 @@
+
+<%= render :active_scaffold => 'assignments', :label => "Seven day's Ticket", :conditions => ['assign_date >= ? AND assign_date <= ?', 7.days.ago,Date.today] %>
+
+

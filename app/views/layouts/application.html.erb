@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title> <%= controller.action_name %></title>
+  
+  <%= javascript_include_tag :defaults %> 
+<%= active_scaffold_includes %>
+
+</head>
+<body>
+<% if ENV['RAILS_ENV'] == 'development' %>
+    <%= javascript_include_tag 'prototype' %>
+           <% #debug session %>
+           <% debug params %>                   
+		
+<% end %>
+<div id ="logo"></div>
+<div id="menu">
+
+<ul>
+
+<% if logged_in? -%>
+
+<li>
+<%= link_to  'My Tickets',:controller=>:assignments,:action => 'my_tickets' %>	 |
+</li>
+
+<li>
+<%= link_to  'ALL Tickets',:controller=>:assignments %>	 |
+</li>
+<li>
+<%= link_to  'KB',:controller=>:knowledges %>  |
+</li>
+<li>
+<%= link_to  'Statistic',:controller=> :assignments, :action => 'stat' %>  |
+
+</li>
+
+<li>
+<span>Logged In AS: <%= link_to_current_user :content_method => :login  %></span> | [<%= link_to "Logout", logout_path, { :title => "Log out" }    %>] |
+</li>
+<% else -%>
+<li>
+<%= link_to_login_with_IP 'Logged Out', :style => 'border: none;' %> | <%= link_to "Log In",  login_path,  { :title => "Log in" } %>/<%= link_to "", signup_path, { :title => "Create an account" } %>
+</li>
+<% end -%>
+</ul>
+</div>
+
+<p style="color: green"><%= flash[:notice] %><%= flash[:error] %></p>
+
+<%= yield %>
+
+</body>
+</html>

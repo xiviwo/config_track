@@ -1,0 +1,6 @@
+<h3><%= link_to  'My Unsolved Tickets',:controller=>:assignments,:action => 'my_unsolved_tickets' %>
+
+|   <%= link_to  'My Solved Tickets',:controller=>:assignments,:action => 'my_solved_tickets' %></h3>
+<%= ticket_table(@mytickets_titile, @mytickets_sql) %>
+
+

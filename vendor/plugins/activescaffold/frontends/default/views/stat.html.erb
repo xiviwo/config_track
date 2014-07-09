@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ZH-CN" lang="ZH-CN">
+
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+ <%= javascript_include_tag :defaults %> 
+<%= active_scaffold_includes %>
+ 
+
+<title>Statistic</title>
+ 
+</head>
+
+<body class="page-break">
+
+
+<p><h3>
+
+<%= link_to_function("Unresolved", nil, :id => "link_to_unresolved") do |page|
+  page[:unresolved].toggle "Appear"
+  page[:tickets].replace_html ""
+  page[:tickets].toggle "Appear"
+  #page[:more_link].replace_html "Show me less"
+end
+%>
+</h3></p>
+
+<div id="unresolved" style="display:none;">
+
+<%= link_to_remote "", :update =>"tickets", :url => { :action => 'stat'   } %>
+<ul>
+<li>
+<%= 
+link_to_partial(@threedays_title,@threedays_sql)
+
+%>(<%= @treedays %>)
+</li>
+<li>
+<%= 
+link_to_partial(@fivedays_title,@fivedays_sql)
+
+%>(<%= @fivedays %>)
+</li>
+<li>
+<%= 
+link_to_partial(@Sevendays_title,@sevendays_sql)
+%>(<%= @sevendays %>)
+</li>
+<li>
+<%= 
+link_to_partial(@tendays_title,@tendays_sql)
+%>(<%= @tendays %>)
+</li>
+<li>
+<%= 
+link_to_partial(@this_month_title,@this_month_sql)
+
+%>(<%= @this_month %>)
+</li>
+<li>
+<%= 
+
+link_to_partial(@this_year_unsolved_title,@this_year_unsolved_sql)
+
+%>(<%= @this_year_unsolved %>)
+</li>
+</ul>
+
+
+
+</div>
+
+<p><h3>
+
+<%= link_to_function("Resolved", nil, :id => "link_to_resolved") do |page|
+  page[:resolved].toggle "Appear"
+  page[:tickets].replace_html ""
+  page[:tickets].toggle "Appear"
+  #page[:more_link].replace_html "Show me less"
+end
+%>
+
+</h3></p>
+<div id="resolved" style="display:none;">
+
+<ul>
+<li>
+<%= 
+link_to_partial(@this_month_solved_title,@this_month_solved_sql)
+
+%>(<%= @this_month_solved %>)
+</li>
+<li>
+<%= 
+link_to_partial(@this_year_title,@this_year_sql)
+
+%>(<%= @this_year %>)
+</li>
+
+</ul>
+
+</div>
+
+
+<div id="tickets"  style="display:none;">
+ 
+</div>
+
+
+</body>
+
+</html>
