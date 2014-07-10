@@ -1,4 +1,7 @@
-config_track
+Product Configuration tracking
 ============
 
-tracking finished product configuration change
+Tracking finished product configuration change
+
+
+Still under migration,this is project of several years ago.
